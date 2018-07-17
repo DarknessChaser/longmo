@@ -22,7 +22,7 @@ let webpackConfig = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', 'less'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -98,6 +98,10 @@ module.exports = vuxLoader.merge(webpackConfig, {
           }
         }
       }
+    },
+    {
+      name: 'less-theme',
+      path: 'src/styles/theme.less'
     }
   ]
 })
