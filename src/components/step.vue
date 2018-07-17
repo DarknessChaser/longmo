@@ -6,13 +6,14 @@
       <div class="selectItems">
         <group>
           <x-address @on-hide="test()" @on-show="test()" title="地址:" v-model="address" :list="addressData"
-                     placeholder="请选择地址" @on-shadow-change="onShadowChange(ids, names)"></x-address>
+                     placeholder="请选择地址" @on-shadow-change="onShadowChange"></x-address>
         </group>
       </div>
       <div class="selectItems">
-        <select>
-          <option>属性:</option>
-        </select>
+        <group>
+          <selector title="title" v-model="mendian" :options="mendianData" name="测试"
+                    placeholder="测试提示"></selector>
+        </group>
       </div>
     </div>
     <div class="nextBtn">
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-  import {Group, Cell, XAddress, ChinaAddressV4Data} from 'vux'
+  import {Group, Cell, XAddress, ChinaAddressV4Data, Selector} from 'vux'
 
   export default {
     name: 'step',
@@ -31,17 +32,19 @@
       Group,
       Cell,
       XAddress,
-      ChinaAddressV4Data
+      ChinaAddressV4Data,
+      Selector
     },
     data: function () {
       return {
-        footerData: {myStep: 2},
-        address: [
-          '110000',
-          '110100',
-          '110119'
-        ],
-        addressData: ChinaAddressV4Data
+        address: [],
+        addressData: ChinaAddressV4Data,
+        mendianData: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}],
+        mendian: '',
+        myStep: 0,
+        province: '',
+        city: '',
+        footerData: {myStep: 0, province: '', city: ''}
       }
     },
     methods: {
@@ -49,7 +52,11 @@
         console.log('我就试试')
       },
       onShadowChange: function (ids, names) {
-        console.log(ids + ':' + names)
+        let province = names[0]
+        let city = names[1]
+        this.footerData.myStep = 2
+        this.footerData.province = province
+        this.footerData.city = city
       }
     }
   }
