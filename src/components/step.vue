@@ -92,7 +92,7 @@
     <div class="nextBtn">
       <x-button v-show="selectStep<4" type="primary" text="下一步" action-type="button" @click.native="nextStep">下一步
       </x-button>
-      <x-button v-show="selectStep==4" type="primary" text="下一步" action-type="button" @click.native="payment">去付款
+      <x-button v-show="selectStep==4" type="primary" text="去付款" action-type="button" @click.native="payment">去付款
       </x-button>
     </div>
     <my-footer :footerData="footerData"></my-footer>

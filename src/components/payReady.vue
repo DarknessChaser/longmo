@@ -5,19 +5,28 @@
       <p class="payNumber">￥99.00</p>
     </div>
     <group>
-      
+      <cell class="payee" title="收款方" value="xx公司" disabled></cell>
+    </group>
+    <group class="payBtn">
+      <x-button type="primary" text="立即支付" action-type="button"></x-button>
     </group>
   </div>
 </template>
 
 <script>
+  import {Group, Cell} from 'vux'
+
   export default {
+    name: 'payReady',
+    components: {
+      Group,
+      Cell
+    },
     beforeCreate: function () {
       let body = document.getElementsByTagName('body')[0]
       body.style.background = 'none'
-      body.style.backgroundColor = 'f4f4f4'
-    },
-    name: 'payReady'
+      body.style.backgroundColor = '#FBF9FE'
+    }
   }
 </script>
 
@@ -37,5 +46,14 @@
     font-size: 5rem;
     color: #242424;
     margin-bottom: 2rem;
+  }
+
+  .payee{
+    border: #D9D9D9D9 solid 1px;
+    border-style: solid none;
+  }
+
+  .payBtn {
+    padding: 5%;
   }
 </style>
