@@ -15,6 +15,7 @@ import MyFooter from './components/pageFooter'
 import App from './App'
 import Home from './components/HelloFromVux'
 import Step from './components/step'
+import PayReady from './components/payReady'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -29,6 +30,9 @@ const routes = [{
 }, {
   path: '/step',
   component: Step
+}, {
+  path: '/payReady',
+  component: PayReady
 }]
 
 const router = new VueRouter({

@@ -1,15 +1,31 @@
 <template>
   <footer class="pageFooter">
-    <p v-if="footerData&&footerData.myStep>3">xx型号/xx属性</p>
-    <p v-if="footerData&&footerData.myStep>2">xx品牌/xx车型/xx年份</p>
-    <p v-if="footerData&&footerData.myStep>1">{{footerData.province}}省/{{footerData.city}}市/xx门店</p>
+    <p v-if="footerData&&footerData.selectStep>2">
+      <span v-if="footerData.carFilmModel">{{footerData.carFilmModel}}型号</span>
+      <span v-if="footerData.carFilmProperty">/{{footerData.carFilmProperty}}属性</span>
+    </p>
+    <p v-if="footerData&&footerData.selectStep>1">
+      <span v-if="footerData.carBrand">{{footerData.carBrand}}品牌</span>
+      <span v-if="footerData.carModel">/{{footerData.carModel}}车型</span>
+      <span v-if="footerData.carYears">/{{footerData.carYears}}年份</span>
+    </p>
+    <p v-if="footerData&&footerData.selectStep>0">
+      <span v-if="footerData.province">{{footerData.province}}</span>
+      <span v-if="footerData.city">/{{footerData.city}}</span>
+      <span v-if="footerData.district">/{{footerData.district}}</span>
+      <span v-if="footerData.store">/{{footerData.store}}门店</span>
+    </p>
     <p>本次活动最终解释权归测试公司所有</p>
   </footer>
 </template>
 
 <script>
   export default {
-    props: ['footerData'],
+    props: {
+      footerData: {
+        default: {selectStep: 0}
+      }
+    },
     name: 'pageFooter'
   }
 </script>
