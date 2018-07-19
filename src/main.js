@@ -22,6 +22,9 @@ import CarInfo from './components/carInfo'
 import OwnerInfo from './components/ownerInfo'
 import EWarranty from './components/eWarranty'
 import OtherInfo from './components/otherInfo'
+import ReviewSuccess from './components/reviewSuccess'
+import ReviewFail from './components/reviewFail'
+import AftermarketLogin from './components/aftermarketLogin'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -66,6 +69,18 @@ const routes = [
   {
     path: '/otherInfo',
     component: OtherInfo
+  },
+  {
+    path: '/reviewSuccess',
+    component: ReviewSuccess
+  },
+  {
+    path: '/reviewFail',
+    component: ReviewFail
+  },
+  {
+    path: '/aftermarketLogin',
+    component: AftermarketLogin
   }
 ]
 
