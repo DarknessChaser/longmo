@@ -89,7 +89,7 @@
         </flexbox-item>
       </flexbox>
     </div>
-    <div class="nextBtn">
+    <div class="touchBtn">
       <x-button v-show="selectStep<4" type="primary" text="下一步" action-type="button" @click.native="nextStep">下一步
       </x-button>
       <x-button v-show="selectStep==4" type="primary" text="去付款" action-type="button" @click.native="payment">去付款
@@ -181,18 +181,18 @@
 </script>
 
 <style scoped>
-  .step {
-    font-size: 1.5rem;
-    color: #101010;
-  }
-
   .main {
     height: 50%;
-    padding: 0 10%;
+    padding: 0 5%;
   }
 
-  .nextBtn {
-    padding: 0 10%;
+  .step {
+  font-size: 1.5rem;
+  color: #101010;
+  }
+
+  .touchBtn {
+    padding: 0 5%;
   }
 
   /*.nextBtn > button {

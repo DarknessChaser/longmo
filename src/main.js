@@ -16,6 +16,12 @@ import App from './App'
 import Home from './components/HelloFromVux'
 import Step from './components/step'
 import PayReady from './components/payReady'
+import PaySuccess from './components/paySuccess'
+import Login from './components/login'
+import CarInfo from './components/carInfo'
+import OwnerInfo from './components/ownerInfo'
+import EWarranty from './components/eWarranty'
+import OtherInfo from './components/otherInfo'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -24,16 +30,44 @@ Vue.component('x-button', XButton)
 Vue.component('my-logo', MyLogo)
 Vue.component('my-footer', MyFooter)
 
-const routes = [{
-  path: '/',
-  component: Home
-}, {
-  path: '/step',
-  component: Step
-}, {
-  path: '/payReady',
-  component: PayReady
-}]
+const routes = [
+  {
+    path: '/',
+    component: Home
+  },
+  {
+    path: '/step',
+    component: Step
+  },
+  {
+    path: '/payReady',
+    component: PayReady
+  },
+  {
+    path: '/paySuccess',
+    component: PaySuccess
+  },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/carInfo',
+    component: CarInfo
+  },
+  {
+    path: '/ownerInfo',
+    component: OwnerInfo
+  },
+  {
+    path: '/eWarranty',
+    component: EWarranty
+  },
+  {
+    path: '/otherInfo',
+    component: OtherInfo
+  }
+]
 
 const router = new VueRouter({
   routes

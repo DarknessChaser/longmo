@@ -27,6 +27,16 @@
     background-size: 100% 100%;
   }
 
+  .clearFix {
+    zoom: 1;
+  }
+
+  .clearFix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
   #app {
     height: 100%;
     width: 100%;

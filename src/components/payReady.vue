@@ -43,13 +43,13 @@
   }
 
   .payNumber {
-    font-size: 5rem;
+    font-size: 3.5rem;
     color: #242424;
     margin-bottom: 2rem;
   }
 
   .payee{
-    border: #D9D9D9D9 solid 1px;
+    border: #D9D9D9D9 1px;
     border-style: solid none;
   }
 
