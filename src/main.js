@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 
 // 调用模板
-import {XButton} from 'vux'
+import {XButton, Group} from 'vux'
 import MyLogo from './components/logo'
 import MyFooter from './components/pageFooter'
 
@@ -25,11 +25,15 @@ import OtherInfo from './components/otherInfo'
 import ReviewSuccess from './components/reviewSuccess'
 import ReviewFail from './components/reviewFail'
 import AftermarketLogin from './components/aftermarketLogin'
+import AftermarketCarInfo from './components/aftermarketCarInfo'
+import ApplicationReady from './components/applicationReady'
+import ApplicationComplete from './components/applicationComplete'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
 Vue.component('x-button', XButton)
+Vue.component('group', Group)
 Vue.component('my-logo', MyLogo)
 Vue.component('my-footer', MyFooter)
 
@@ -81,6 +85,18 @@ const routes = [
   {
     path: '/aftermarketLogin',
     component: AftermarketLogin
+  },
+  {
+    path: '/aftermarketCarInfo',
+    component: AftermarketCarInfo
+  },
+  {
+    path: '/applicationReady',
+    component: ApplicationReady
+  },
+  {
+    path: '/applicationComplete',
+    component: ApplicationComplete
   }
 ]
 

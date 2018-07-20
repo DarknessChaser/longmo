@@ -42,7 +42,7 @@
 
 <style scoped>
   .main {
-    height: 50%;
+    height: 60%;
     padding: 0 5%;
   }
 
@@ -60,5 +60,9 @@
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
+  }
+  .inputImg p{
+    font-size: 1rem;
+    color: #aaaaaa;
   }
 </style>

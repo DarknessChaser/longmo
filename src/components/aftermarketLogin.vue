@@ -13,8 +13,9 @@
       </group>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button">下一步</x-button>
+      <x-button type="primary" text="登陆" action-type="button">登陆</x-button>
     </div>
+    <my-footer :footerData="{}"></my-footer>
   </div>
 </template>
 
@@ -37,7 +38,7 @@
 
 <style scoped>
   .main {
-    height: 50%;
+    height: 60%;
     text-align: center;
   }
 

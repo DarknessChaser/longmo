@@ -79,13 +79,13 @@
       </flexbox>
       <flexbox :gutter="0" class="priceNumber">
         <flexbox-item>
-          <div class="priceNumberRight">价格</div>
+          <div class="priceNumberLeft">价格</div>
         </flexbox-item>
         <flexbox-item>
           <div class="priceNumberMiddle">xxx</div>
         </flexbox-item>
         <flexbox-item>
-          <div class="priceNumberLeft">元</div>
+          <div class="priceNumberRight">元</div>
         </flexbox-item>
       </flexbox>
     </div>
@@ -182,7 +182,7 @@
 
 <style scoped>
   .main {
-    height: 50%;
+    height: 60%;
     padding: 0 5%;
   }
 
@@ -215,7 +215,7 @@
     margin-top: 25%;
   }
 
-  .priceNumberRight {
+  .priceNumberLeft {
     text-align: right;
     padding-right: 1rem;
   }
@@ -227,7 +227,7 @@
     border-radius: 6px;
   }
 
-  .priceNumberLeft {
+  .priceNumberRight {
     text-align: left;
     padding-left: 1rem;
   }

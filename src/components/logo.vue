@@ -7,7 +7,7 @@
 
 <style scoped>
   .logo {
-    padding: 10% 0;
+    padding: 5% 0;
     width: 100%;
     text-align: center;
   }
