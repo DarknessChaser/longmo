@@ -6,18 +6,40 @@
       <p class="orderAlert">您的保换计划ID号为 xxxxxxxx</p>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="点击保存" action-type="button">点击保存</x-button>
+      <x-button type="primary" text="点击保存" action-type="button" data-clipboard-text="xxxxxxxx" class="btn">点击保存
+      </x-button>
     </div>
   </div>
 </template>
 
 <script>
-  import {Group} from 'vux'
+  import {Group, AlertModule} from 'vux'
+  import Clipboard from 'clipboard'
 
   export default {
     name: 'paySuccess',
     components: {
       Group
+    },
+    mounted () {
+      const clipboard = new Clipboard('.btn')
+      clipboard.on('success', function (e) {
+        e.clearSelection()
+        AlertModule.show({
+          title: '复制成功！',
+          buttonText: '确认',
+          onHide () {
+            console.log('此处应当有页面跳转')
+          }
+        })
+      })
+
+      clipboard.on('error', function () {
+        AlertModule.show({
+          title: '您的浏览器不支持一键复制，请手动选择后复制！',
+          buttonText: '确认'
+        })
+      })
     }
   }
 </script>

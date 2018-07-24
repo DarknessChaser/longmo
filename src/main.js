@@ -15,6 +15,10 @@ import MyFooter from './components/pageFooter'
 import App from './App'
 import Home from './components/HelloFromVux'
 import Step from './components/step'
+import Step1 from './components/step1'
+import Step2 from './components/step2'
+import Step3 from './components/step3'
+import Step4 from './components/step4'
 import PayReady from './components/payReady'
 import PaySuccess from './components/paySuccess'
 import Login from './components/login'
@@ -37,6 +41,23 @@ Vue.component('group', Group)
 Vue.component('my-logo', MyLogo)
 Vue.component('my-footer', MyFooter)
 
+const store = new Vuex.Store({
+  state: {
+    footerData: {
+      selectStep: 1,
+      province: '',
+      city: '',
+      district: '',
+      store: '',
+      carBrand: '',
+      carModel: '',
+      carYears: '',
+      carFilmProperty: '',
+      carFilmModel: ''
+    }
+  }
+})
+
 const routes = [
   {
     path: '/',
@@ -45,6 +66,23 @@ const routes = [
   {
     path: '/step',
     component: Step
+  },
+  {
+    path: '/step1',
+    component: Step1,
+    props: {poptest: 1123}
+  },
+  {
+    path: '/step2',
+    component: Step2
+  },
+  {
+    path: '/step3',
+    component: Step3
+  },
+  {
+    path: '/step4',
+    component: Step4
   },
   {
     path: '/payReady',
@@ -111,5 +149,6 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app-box')
