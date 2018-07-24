@@ -15,7 +15,7 @@
       </group>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep">下一步
+      <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep" :disabled="address == [] || footerData.store == ''">下一步
       </x-button>
     </div>
     <my-footer :footerData="footerData"></my-footer>
@@ -27,7 +27,6 @@
 
   export default {
     name: 'step1',
-    props: ['poptest'],
     components: {
       Group,
       XAddress,
@@ -42,7 +41,18 @@
         district: '',
         addressData: ChinaAddressV4Data,
         storeData: [{key: 'test1', value: '测试门店1'}, {key: 'test2', value: '测试门店2'}],
-        footerData: this.$store.state.footerData
+        footerData: {
+          selectStep: 1,
+          province: '',
+          city: '',
+          district: '',
+          store: '',
+          carBrand: '',
+          carModel: '',
+          carYears: '',
+          carFilmProperty: '',
+          carFilmModel: ''
+        }
       }
     },
     methods: {
@@ -50,7 +60,6 @@
         console.log('我就试试')
       },
       onAddressChange: function (ids, names) {
-        this.footerData.selectStep = this.selectStep
         this.footerData.province = names[0]
         this.footerData.city = names[1]
         this.footerData.district = names[2]

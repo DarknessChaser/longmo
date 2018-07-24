@@ -64,7 +64,7 @@
     },
     data: function () {
       return {
-        footerData: this.$store.state.footerData
+        footerData: JSON.parse(this.$route.query.footerData)
       }
     },
     methods: {
@@ -72,10 +72,11 @@
         console.log('我就试试')
       },
       payment: function () {
+        let vm = this.$router
         AlertModule.show({
           content: '支付成功啦',
           onHide () {
-            this.$router.push({path: 'payReady'})
+            vm.push({path: 'payReady'})
           }
         })
       }

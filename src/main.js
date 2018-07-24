@@ -4,7 +4,6 @@
 import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 
 // 调用模板
 import {XButton, Group} from 'vux'
@@ -34,29 +33,11 @@ import ApplicationReady from './components/applicationReady'
 import ApplicationComplete from './components/applicationComplete'
 
 Vue.use(VueRouter)
-Vue.use(Vuex)
 
 Vue.component('x-button', XButton)
 Vue.component('group', Group)
 Vue.component('my-logo', MyLogo)
 Vue.component('my-footer', MyFooter)
-
-const store = new Vuex.Store({
-  state: {
-    footerData: {
-      selectStep: 1,
-      province: '',
-      city: '',
-      district: '',
-      store: '',
-      carBrand: '',
-      carModel: '',
-      carYears: '',
-      carFilmProperty: '',
-      carFilmModel: ''
-    }
-  }
-})
 
 const routes = [
   {
@@ -69,8 +50,7 @@ const routes = [
   },
   {
     path: '/step1',
-    component: Step1,
-    props: {poptest: 1123}
+    component: Step1
   },
   {
     path: '/step2',
@@ -149,6 +129,5 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app-box')

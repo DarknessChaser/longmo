@@ -13,7 +13,8 @@
       </group>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep">下一步
+      <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep"
+                :disabled="footerData.carFilmModel == '' || footerData.carFilmProperty == ''">下一步
       </x-button>
     </div>
     <my-footer :footerData="footerData"></my-footer>
@@ -33,7 +34,7 @@
       return {
         carFilmModelData: [{key: 'test1', value: '测试型号1'}, {key: 'test2', value: '测试型号2'}],
         carFilmPropertyData: [{key: 'test1', value: '测试属性1'}, {key: 'test2', value: '测试属性2'}],
-        footerData: this.$store.state.footerData
+        footerData: JSON.parse(this.$route.query.footerData)
       }
     },
     methods: {
@@ -42,7 +43,7 @@
       },
       nextStep: function () {
         this.footerData.selectStep = 4
-        this.$router.push({path: 'step4'})
+        this.$router.push({path: 'step4', query: {footerData: JSON.stringify(this.footerData)}})
       }
     }
   }
