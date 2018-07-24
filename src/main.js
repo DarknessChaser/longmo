@@ -4,6 +4,7 @@
 import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 
 // 调用模板
 import {XButton, Group} from 'vux'
@@ -33,6 +34,7 @@ import ApplicationReady from './components/applicationReady'
 import ApplicationComplete from './components/applicationComplete'
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 Vue.component('x-button', XButton)
 Vue.component('group', Group)

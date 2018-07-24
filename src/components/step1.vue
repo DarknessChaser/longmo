@@ -17,6 +17,8 @@
     <div class="touchBtn">
       <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep" :disabled="address == [] || footerData.store == ''">下一步
       </x-button>
+      <x-button type="primary" text="测试" action-type="button" @click.native="getTest">
+      </x-button>
     </div>
     <my-footer :footerData="footerData"></my-footer>
   </div>
@@ -59,6 +61,15 @@
       test: function () {
         console.log('我就试试')
       },
+      getTest: function () {
+        let url = '/api/4e89a35ce2e7e4d6d9c4f88be967f251/selectStore/' + this.footerData.province + '/' + this.footerData.city
+        this.$http.get(url).then(response => {
+          // get body data
+          console.log(response.body)
+        }, response => {
+          // error callback
+        })
+      },
       onAddressChange: function (ids, names) {
         this.footerData.province = names[0]
         this.footerData.city = names[1]
@@ -68,6 +79,9 @@
         this.footerData.selectStep = 2
         this.$router.push({path: 'step2', query: {footerData: JSON.stringify(this.footerData)}})
       }
+    },
+    mounted: function () {
+      console.log(123)
     }
   }
 </script>

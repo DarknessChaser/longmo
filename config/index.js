@@ -46,6 +46,13 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
+    proxy: {
+      '/api/*': {
+        target: 'http://10.0.0.90:8999',
+        changeOrigin: true,
+        secure: false
+      }
+    },
   },
 
   build: {
