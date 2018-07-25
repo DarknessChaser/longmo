@@ -6,10 +6,10 @@
         <span>Step2.选择车辆</span>
       </div>
       <group>
-        <selector title="品牌：" v-model="footerData.carBrand" :options="carBrandData" placeholder="请选择品牌" direction="rtl"></selector>
+        <selector title="品牌：" v-model="footerData.carBrand" :options="carBrandData" placeholder="请选择品牌" direction="rtl" @on-change="getCarModelData"></selector>
       </group>
       <group>
-        <selector title="车型：" v-model="footerData.carModel" :options="carModelData" placeholder="请选择车型" direction="rtl"></selector>
+        <selector title="车型：" v-model="footerData.carModel" :options="carModelData" placeholder="请选择车型" direction="rtl" @on-change="getCarYearsData"></selector>
       </group>
       <group>
         <selector title="年份：" v-model="footerData.carYears" :options="carYearsData" placeholder="请选择年份" direction="rtl"></selector>
@@ -35,20 +35,44 @@
     },
     data: function () {
       return {
-        carBrandData: [{key: 'test1', value: '测试品牌1'}, {key: 'test2', value: '测试品牌2'}],
-        carModelData: [{key: 'test1', value: '测试车型1'}, {key: 'test2', value: '测试车型2'}],
-        carYearsData: [{key: 'test1', value: '测试年份1'}, {key: 'test2', value: '测试年份2'}],
+        carBrandData: [],
+        carModelData: [],
+        carYearsData: [],
         footerData: JSON.parse(this.$route.query.footerData)
       }
     },
     methods: {
-      test: function () {
-        console.log('我就试试')
+      getCarBrandData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectBrand/'
+        this.$http.get(url).then(response => {
+          this.storeData = response.body.map(item => item.address)
+        }, response => {
+          // error callback
+        })
+      },
+      getCarModelData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectModel/' + this.footerData.province + '/' + this.footerData.city
+        this.$http.get(url).then(response => {
+          this.storeData = response.body.map(item => item.address)
+        }, response => {
+          // error callback
+        })
+      },
+      getCarYearsData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectStore/' + this.footerData.province + '/' + this.footerData.city
+        this.$http.get(url).then(response => {
+          this.storeData = response.body.map(item => item.address)
+        }, response => {
+          // error callback
+        })
       },
       nextStep: function () {
         this.footerData.selectStep = 3
         this.$router.push({path: 'step3', query: {footerData: JSON.stringify(this.footerData)}})
       }
+    },
+    mounted: function () {
+      this.getCarBrandData()
     }
   }
 </script>

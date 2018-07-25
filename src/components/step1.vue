@@ -7,7 +7,7 @@
       </div>
       <group>
         <x-address title="地址：" v-model="address" :list="addressData"
-                   placeholder="请选择地址" @on-shadow-change="onAddressChange"></x-address>
+                   placeholder="请选择地址" @on-shadow-change="onAddressChange" @on-hide="getStoreData"></x-address>
       </group>
       <group>
         <selector title="门店：" v-model="footerData.store" :options="storeData" placeholder="请选择门店"
@@ -16,8 +16,6 @@
     </div>
     <div class="touchBtn">
       <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep" :disabled="address == [] || footerData.store == ''">下一步
-      </x-button>
-      <x-button type="primary" text="测试" action-type="button" @click.native="getTest">
       </x-button>
     </div>
     <my-footer :footerData="footerData"></my-footer>
@@ -42,7 +40,7 @@
         city: '',
         district: '',
         addressData: ChinaAddressV4Data,
-        storeData: [{key: 'test1', value: '测试门店1'}, {key: 'test2', value: '测试门店2'}],
+        storeData: [],
         footerData: {
           selectStep: 1,
           province: '',
@@ -58,14 +56,10 @@
       }
     },
     methods: {
-      test: function () {
-        console.log('我就试试')
-      },
-      getTest: function () {
-        let url = '/api/4e89a35ce2e7e4d6d9c4f88be967f251/selectStore/' + this.footerData.province + '/' + this.footerData.city
+      getStoreData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectStore/' + this.footerData.province + '/' + this.footerData.city
         this.$http.get(url).then(response => {
-          // get body data
-          console.log(response.body)
+          this.storeData = response.body.map(item => item.address)
         }, response => {
           // error callback
         })
@@ -79,9 +73,6 @@
         this.footerData.selectStep = 2
         this.$router.push({path: 'step2', query: {footerData: JSON.stringify(this.footerData)}})
       }
-    },
-    mounted: function () {
-      console.log(123)
     }
   }
 </script>
