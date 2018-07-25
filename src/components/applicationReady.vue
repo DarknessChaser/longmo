@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import {Group, XInput, Flexbox, FlexboxItem, CheckIcon, AlertModule} from 'vux'
+  import {Group, XInput, Flexbox, FlexboxItem, CheckIcon} from 'vux'
 
   export default {
     name: 'applicationReady',
@@ -49,7 +49,7 @@
     },
     methods: {
       submitInfo: function () {
-        AlertModule.show({
+        this.$vux.alert.show({
           content: '尊敬的***先生/女士，感谢您参加龙膜PPF保换计划，你车牌号为***的车辆参加保换计划的生效时间为2018年**月**日**时，到时期间为2018年**月**日**时。',
           buttonText: '知道了',
           onHide () {

@@ -4,32 +4,32 @@
     <div class="main">
       <flexbox>
         <flexbox-item>
-          <div class="showPayment">{{footerData.province}}xx省</div>
+          <div class="showPayment">{{footerData.province}}</div>
         </flexbox-item>
         <flexbox-item>
-          <div class="showPayment">{{footerData.city}}xx市</div>
+          <div class="showPayment">{{footerData.city}}</div>
         </flexbox-item>
         <flexbox-item>
-          <div class="showPayment">{{footerData.store}}xx门店</div>
-        </flexbox-item>
-      </flexbox>
-      <flexbox>
-        <flexbox-item>
-          <div class="showPayment">{{footerData.carBrand}}xx品牌</div>
-        </flexbox-item>
-        <flexbox-item>
-          <div class="showPayment">{{footerData.carModel}}xx型</div>
-        </flexbox-item>
-        <flexbox-item>
-          <div class="showPayment">{{footerData.carYears}}xx款</div>
+          <div class="showPayment">{{footerData.store}}</div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
-          <div class="showPayment">{{footerData.carFilmModel}}xx型号</div>
+          <div class="showPayment">{{footerData.carBrand}}</div>
         </flexbox-item>
         <flexbox-item>
-          <div class="showPayment">{{footerData.carFilmProperty}}xx属性</div>
+          <div class="showPayment">{{footerData.carModel}}</div>
+        </flexbox-item>
+        <flexbox-item>
+          <div class="showPayment">{{footerData.carYears}}</div>
+        </flexbox-item>
+      </flexbox>
+      <flexbox>
+        <flexbox-item>
+          <div class="showPayment">{{footerData.carFilmModel}}</div>
+        </flexbox-item>
+        <flexbox-item>
+          <div class="showPayment">{{footerData.carFilmProperty}}</div>
         </flexbox-item>
       </flexbox>
       <flexbox :gutter="0" class="priceNumber">
@@ -37,7 +37,7 @@
           <div class="priceNumberLeft">价格</div>
         </flexbox-item>
         <flexbox-item>
-          <div class="priceNumberMiddle">xxx</div>
+          <div class="priceNumberMiddle">{{price}}</div>
         </flexbox-item>
         <flexbox-item>
           <div class="priceNumberRight">元</div>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import {Selector, Flexbox, FlexboxItem, AlertModule} from 'vux'
+  import {Selector, Flexbox, FlexboxItem} from 'vux'
 
   export default {
     name: 'step4',
@@ -64,22 +64,32 @@
     },
     data: function () {
       return {
+        price: '',
         footerData: JSON.parse(this.$route.query.footerData)
       }
     },
     methods: {
-      test: function () {
-        console.log('我就试试')
+      getPrice: function () {
+        let url = '/api/' + this.$store.state.token + '/selectPrice/' + this.footerData.carBrand + '/' + this.footerData.carModel + '/' + this.footerData.carYears + '/' + this.footerData.carFilmModel + '/' + this.footerData.carFilmProperty
+        this.$http.get(url).then(response => {
+          if (response.body === {}) {
+            this.price = '暂无价格'
+          } else {
+            this.price = response.body.actual_price
+          }
+        }, response => {
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
+        })
       },
       payment: function () {
-        let vm = this.$router
-        AlertModule.show({
-          content: '支付成功啦',
-          onHide () {
-            vm.push({path: 'payReady'})
-          }
-        })
+        this.$router.push({path: 'payReady'})
       }
+    },
+    mounted: function () {
+      this.getPrice()
     }
   }
 </script>

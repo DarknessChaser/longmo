@@ -100,7 +100,7 @@
 </template>
 
 <script>
-  import {Group, Cell, XAddress, ChinaAddressV4Data, Selector, Flexbox, FlexboxItem, AlertModule} from 'vux'
+  import {Group, Cell, XAddress, ChinaAddressV4Data, Selector, Flexbox, FlexboxItem} from 'vux'
 
   export default {
     name: 'step',
@@ -168,7 +168,7 @@
         }
       },
       payment: function () {
-        AlertModule.show({
+        this.$vux.alert.show({
           title: '此处应当有支付成功信息',
           content: '成功啦',
           onHide () {

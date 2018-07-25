@@ -43,27 +43,36 @@
     },
     methods: {
       getCarBrandData: function () {
-        let url = '/api/' + this.$store.state.token + '/selectBrand/'
+        let url = '/api/' + this.$store.state.token + '/selectBrand'
         this.$http.get(url).then(response => {
-          this.storeData = response.body.map(item => item.address)
+          this.carBrandData = response.body.map(item => item.name)
         }, response => {
-          // error callback
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
         })
       },
       getCarModelData: function () {
-        let url = '/api/' + this.$store.state.token + '/selectModel/' + this.footerData.province + '/' + this.footerData.city
+        let url = '/api/' + this.$store.state.token + '/selectModel/' + this.footerData.carBrand
         this.$http.get(url).then(response => {
-          this.storeData = response.body.map(item => item.address)
+          this.carModelData = response.body.map(item => item.name)
         }, response => {
-          // error callback
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
         })
       },
       getCarYearsData: function () {
-        let url = '/api/' + this.$store.state.token + '/selectStore/' + this.footerData.province + '/' + this.footerData.city
+        let url = '/api/' + this.$store.state.token + '/selectStyle/' + this.footerData.carModel
         this.$http.get(url).then(response => {
-          this.storeData = response.body.map(item => item.address)
+          this.carYearsData = response.body.map(item => item.name)
         }, response => {
-          // error callback
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
         })
       },
       nextStep: function () {

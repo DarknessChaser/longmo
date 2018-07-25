@@ -8,7 +8,7 @@ import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 
 // 调用模板
-import {XButton, Group} from 'vux'
+import {XButton, Group, AlertPlugin} from 'vux'
 import MyLogo from './components/logo'
 import MyFooter from './components/pageFooter'
 
@@ -37,6 +37,7 @@ import ApplicationComplete from './components/applicationComplete'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueResource)
+Vue.use(AlertPlugin)
 
 Vue.component('x-button', XButton)
 Vue.component('group', Group)

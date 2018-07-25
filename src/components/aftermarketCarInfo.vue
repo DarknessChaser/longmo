@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import {XInput, Flexbox, FlexboxItem, AlertModule} from 'vux'
+  import {XInput, Flexbox, FlexboxItem} from 'vux'
 
   export default {
     name: 'aftermarketCarInfo',
@@ -65,7 +65,7 @@
     },
     methods: {
       alertInfo: function () {
-        AlertModule.show({
+        this.$vux.alert.show({
           content: '尊敬的***先生/女士，你车牌号为***的车辆参加龙膜PPF保换计划的赔付在***门店，时间为2018年**月**日。',
           buttonText: '查看详情',
           onHide () {

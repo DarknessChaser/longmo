@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {Group, AlertModule} from 'vux'
+  import {Group} from 'vux'
   import Clipboard from 'clipboard'
 
   export default {
@@ -25,7 +25,7 @@
       const clipboard = new Clipboard('.btn')
       clipboard.on('success', function (e) {
         e.clearSelection()
-        AlertModule.show({
+        this.$vux.alert.show({
           title: '复制成功！',
           buttonText: '确认',
           onHide () {
@@ -35,7 +35,7 @@
       })
 
       clipboard.on('error', function () {
-        AlertModule.show({
+        this.$vux.alert.show({
           title: '您的浏览器不支持一键复制，请手动选择后复制！',
           buttonText: '确认'
         })

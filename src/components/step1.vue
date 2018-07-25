@@ -57,11 +57,14 @@
     },
     methods: {
       getStoreData: function () {
-        let url = '/api/' + this.$store.state.token + '/selectStore/' + this.footerData.province + '/' + this.footerData.city
+        let url = '/api/' + this.$store.state.token + '/selectStore/' + this.address[0] + '/' + this.address[1]
         this.$http.get(url).then(response => {
           this.storeData = response.body.map(item => item.address)
         }, response => {
-          // error callback
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
         })
       },
       onAddressChange: function (ids, names) {

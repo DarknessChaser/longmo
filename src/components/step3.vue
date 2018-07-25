@@ -6,7 +6,7 @@
         <span>Step3.选择车膜</span>
       </div>
       <group>
-        <selector title="型号：" v-model="footerData.carFilmModel" :options="carFilmModelData" placeholder="请选择型号" direction="rtl"></selector>
+        <selector title="型号：" v-model="footerData.carFilmModel" :options="carFilmModelData" placeholder="请选择型号" direction="rtl" @on-change="getCarFilmPropertyData"></selector>
       </group>
       <group>
         <selector title="属性：" v-model="footerData.carFilmProperty" :options="carFilmPropertyData" placeholder="请选择属性" direction="rtl"></selector>
@@ -32,19 +32,41 @@
     },
     data: function () {
       return {
-        carFilmModelData: [{key: 'test1', value: '测试型号1'}, {key: 'test2', value: '测试型号2'}],
-        carFilmPropertyData: [{key: 'test1', value: '测试属性1'}, {key: 'test2', value: '测试属性2'}],
+        carFilmModelData: [],
+        carFilmPropertyData: [],
         footerData: JSON.parse(this.$route.query.footerData)
       }
     },
     methods: {
-      test: function () {
-        console.log('我就试试')
+      getCarFilmModelData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectMotype/'
+        this.$http.get(url).then(response => {
+          this.carFilmModelData = response.body.map(item => item.type_name)
+        }, response => {
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
+        })
+      },
+      getCarFilmPropertyData: function () {
+        let url = '/api/' + this.$store.state.token + '/selectMoattr/'
+        this.$http.get(url).then(response => {
+          this.carFilmPropertyData = response.body.map(item => item.attr_name)
+        }, response => {
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
+        })
       },
       nextStep: function () {
         this.footerData.selectStep = 4
         this.$router.push({path: 'step4', query: {footerData: JSON.stringify(this.footerData)}})
       }
+    },
+    mounted: function () {
+      this.getCarFilmModelData()
     }
   }
 </script>
