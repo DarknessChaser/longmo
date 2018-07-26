@@ -45,7 +45,7 @@
 
 <style scoped>
   .main {
-    height: 60%;
+    height: 55%;
     padding: 0 5%;
   }
 

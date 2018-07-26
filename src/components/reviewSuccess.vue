@@ -20,7 +20,7 @@
 
 <style scoped>
   .main {
-    height: 60%;
+    height: 55%;
     text-align: center;
   }
 </style>

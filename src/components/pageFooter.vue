@@ -1,11 +1,13 @@
 <template>
   <footer class="pageFooter">
+    <p v-if="footerData&&footerData.selectStep>2">
+      <span v-if="footerData.carFilmModel">{{footerData.carFilmModel}}</span>
+      <span v-if="footerData.carFilmProperty">/{{footerData.carFilmProperty}}</span>
+    </p>
     <p v-if="footerData&&footerData.selectStep>1">
       <span v-if="footerData.carBrand">{{footerData.carBrand}}</span>
       <span v-if="footerData.carModel">/{{footerData.carModel}}</span>
       <span v-if="footerData.carYears">/{{footerData.carYears}}</span>
-      <span v-if="footerData.selectStep>2&&footerData.carFilmModel">/{{footerData.carFilmModel}}</span>
-      <span v-if="footerData.selectStep>2&&footerData.carFilmProperty">/{{footerData.carFilmProperty}}</span>
     </p>
     <p v-if="footerData&&footerData.selectStep>0">
       <span v-if="footerData.province">{{footerData.province}}</span>
