@@ -48,7 +48,7 @@
       <x-button type="primary" text="去付款" action-type="button" @click.native="payment">去付款
       </x-button>
     </div>
-    <my-footer :footerData="footerData"></my-footer>
+    <my-footer :footerData="{}"></my-footer>
   </div>
 </template>
 
@@ -121,7 +121,7 @@
     font-size: 1.5rem;
     line-height: 2rem;
     color: #101010;
-    margin-top: 25%;
+    margin-top: 10%;
   }
 
   .priceNumberLeft {

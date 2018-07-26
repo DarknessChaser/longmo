@@ -61,7 +61,8 @@
     text-align: center;
     background-color: #ffffff;
   }
-  .inputImg p{
+
+  .inputImg p {
     font-size: 1rem;
     color: #aaaaaa;
   }

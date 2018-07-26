@@ -13,10 +13,12 @@
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg"><img src="../img/inputImg1.png"/></div>
+          <div class="inputImg"><img src="../img/inputImgMini.png"/>
+            <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
-          <div class="inputImg"><img src="../img/inputImg2.png"/></div>
+          <div class="inputImg"><img src="../img/inputImgMini.png"/>
+            <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
     </div>
@@ -56,10 +58,15 @@
     padding: 0 5%;
   }
 
-  .inputImg{
+  .inputImg {
     margin-top: 15%;
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
+  }
+
+  .inputImg p {
+    font-size: 1rem;
+    color: #aaaaaa;
   }
 </style>
