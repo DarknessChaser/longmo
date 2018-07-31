@@ -46,8 +46,7 @@ Vue.component('my-footer', MyFooter)
 
 const store = new Vuex.Store({
   state: {
-    token: md5('longmo' + dateFormat(new Date(), 'YYYYMMDD')),
-    baseURL: '/api/58f7a2436fa04b9587bf2678889aa8dc'
+    token: md5('longmo' + dateFormat(new Date(), 'YYYYMMDD'))
   }
 })
 
