@@ -3,7 +3,7 @@
     <my-logo></my-logo>
     <div class="main">
       <div class="step">
-        <span>选择车辆</span>
+        <span>Step2.选择车辆</span>
       </div>
       <group>
         <selector title="品牌：" v-model="footerData.carBrand" :options="carBrandData" placeholder="请选择品牌" direction="rtl" @on-change="getCarModelData"></selector>

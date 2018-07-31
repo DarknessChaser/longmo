@@ -13,7 +13,7 @@
       <span v-if="footerData.district">/{{footerData.district}}</span>
       <span v-if="footerData.store">/{{footerData.store}}</span>
     </p>
-    <!--<p>本次活动最终解释权归测试公司所有</p>-->
+    <p>本次活动最终解释权归测试公司所有</p>
   </footer>
 </template>
 

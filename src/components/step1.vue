@@ -3,7 +3,7 @@
     <my-logo></my-logo>
     <div class="main">
       <div class="step">
-        <span>选择门店</span>
+        <span>Step1.选择门店</span>
       </div>
       <group>
         <x-address title="地址：" v-model="address" :list="addressData"

@@ -3,7 +3,7 @@
     <my-logo></my-logo>
     <div class="main">
       <div class="step">
-        <span>选择车膜</span>
+        <span>Step3.选择车膜</span>
       </div>
       <group>
         <selector title="型号：" v-model="footerData.carFilmModel" :options="carFilmModelData" placeholder="请选择型号" direction="rtl" @on-change="getCarFilmPropertyData"></selector>
