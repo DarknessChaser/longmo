@@ -13,7 +13,7 @@
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" id="test"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
@@ -31,7 +31,6 @@
 
 <script>
   import {Group, XInput, Flexbox, FlexboxItem} from 'vux'
-  import plupload from 'plupload'
 
   export default {
     name: 'carInfo',
@@ -40,13 +39,6 @@
       XInput,
       Flexbox,
       FlexboxItem
-    },
-    mounted: function () {
-      var uploader = new plupload.Uploader({
-        browse_button: 'test', // 触发文件选择对话框的按钮，为那个元素id
-        url: 'upload.php' // 服务器端的上传页面地址
-      })
-      uploader.init()
     }
   }
 </script>
