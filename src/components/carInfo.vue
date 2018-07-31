@@ -14,8 +14,7 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="test"><img src="../img/inputImgMini.png"/>
-            <p>交强险保单</p>
-            <input type="file" accept=".jpg, .jpeg, .png"/></div>
+            <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg"><img src="../img/inputImgMini.png"/>
@@ -40,11 +39,6 @@
       XInput,
       Flexbox,
       FlexboxItem
-    },
-    methods: {
-      test: function (event) {
-        console.log(event)
-      }
     }
   }
 </script>
@@ -69,12 +63,6 @@
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
-  }
-
-  .inputImg input[type="file"] {
-    width: 0px;
-    height: 0px;
-    display: none;
   }
 
   .inputImg p {
