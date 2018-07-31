@@ -42,8 +42,10 @@
       FlexboxItem
     },
     methods: {
-      test: function (event) {
-        console.log(event)
+      test: function () {
+        let fileInput = this.$el.querySelector('input[type="file"]')
+        fileInput.click()
+        console.log(fileInput.change)
       }
     }
   }
