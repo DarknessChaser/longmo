@@ -13,7 +13,7 @@
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" @click="test"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
