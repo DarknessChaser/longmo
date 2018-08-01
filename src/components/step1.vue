@@ -56,6 +56,17 @@
       }
     },
     methods: {
+      getAddressData: function () {
+        let url = '/api/' + this.$store.state.token + '/areaShow'
+        this.$http.get(url).then(response => {
+          this.addressData = response.body
+        }, response => {
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
+        })
+      },
       getStoreData: function () {
         let url = '/api/' + this.$store.state.token + '/selectStore/' + this.address[0] + '/' + this.address[1]
         this.$http.get(url).then(response => {
@@ -76,6 +87,9 @@
         this.footerData.selectStep = 2
         this.$router.push({path: 'step2', query: {footerData: JSON.stringify(this.footerData)}})
       }
+    },
+    mounted: function () {
+      this.getAddressData()
     }
   }
 </script>
