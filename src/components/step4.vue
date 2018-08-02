@@ -9,6 +9,8 @@
         <flexbox-item>
           <div class="showPayment">{{footerData.city}}</div>
         </flexbox-item>
+      </flexbox>
+      <flexbox>
         <flexbox-item>
           <div class="showPayment">{{footerData.store}}</div>
         </flexbox-item>
@@ -114,7 +116,7 @@
     background-color: #ffffff;
     font-size: 1.5rem;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 0.5rem;
   }
 
   .priceNumber {
