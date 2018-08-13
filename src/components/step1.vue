@@ -70,7 +70,7 @@
       getStoreData: function () {
         let url = '/api/' + this.$store.state.token + '/selectStore/' + this.address[0] + '/' + this.address[1]
         this.$http.get(url).then(response => {
-          this.storeData = response.body.map(item => item.address)
+          this.storeData = response.body.map(item => item.store_name)
         }, response => {
           console.log(response)
           this.$vux.alert.show({

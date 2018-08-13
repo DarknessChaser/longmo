@@ -87,8 +87,8 @@
         })
       },
       payment: function () {
-        // this.$router.push({path: 'payReady'})
         let url = '/api/' + this.$store.state.token + '/xiaDan/'
+        let vm = this
         let postData = {}
         postData.store_name = this.footerData.store
         postData.brand_name = this.footerData.carBrand
@@ -98,41 +98,43 @@
         postData.attr_name = this.footerData.carFilmProperty
         postData.goods_price = this.price
         postData = JSON.stringify(postData)
-        this.$http.post(url, postData, {headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'}}).then(response => {
+
+        /* eslint-disable */
+        let jsApiParameters = {}
+
+        let onBridgeReady = function () {
+          WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', jsApiParameters,
+            function (res) {
+              if (res.err_msg === 'get_brand_wcpay_request:ok') {
+                // 使用以上方式判断前端返回,微信团队郑重提示：
+                // res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                vm.$vux.alert.show({
+                  title: '支付成功!'
+                })
+              }
+            })
+        }
+
+        let callpay = function () {
+          if (typeof WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+              document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
+            } else if (document.attachEvent) {
+              document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
+              document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
+            }
+          } else {
+            onBridgeReady()
+          }
+        }
+
+        this.$http.post(url, postData).then(response => {
           if (response.body === {}) {
             this.price = '暂无价格'
           } else {
-            function onBridgeReady() {
-              WeixinJSBridge.invoke(
-                'getBrandWCPayRequest', {
-                  'appId': response.body.appId,     // 公众号名称，由商户传入
-                  'timeStamp': response.body.timeStamp,         // 时间戳，自1970年以来的秒数
-                  'nonceStr': response.body.nonceStr, // 随机串
-                  'package': response.body.package,
-                  'signType': response.body.signType,         // 微信签名方式：
-                  'paySign': response.body.paySign // 微信签名
-                },
-                function (res) {
-                  if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                    // 使用以上方式判断前端返回,微信团队郑重提示：
-                    // res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-                    this.$vux.alert.show({
-                      title: '支付成功!'
-                    })
-                  }
-                })
-            }
-
-            if (typeof WeixinJSBridge === 'undefined') {
-              if (document.addEventListener) {
-                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
-              } else if (document.attachEvent) {
-                document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
-                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
-              }
-            } else {
-              onBridgeReady();
-            }
+            jsApiParameters = response.body
+            callpay()
           }
         }, response => {
           console.log(response)
@@ -140,6 +142,7 @@
             title: '网络拥堵请稍候……'
           })
         })
+        /* eslint-enable */
       }
     },
     mounted: function () {
