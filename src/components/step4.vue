@@ -47,7 +47,8 @@
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="去付款" action-type="button" @click.native="payment">去付款
+      <x-button type="primary" text="去付款" action-type="button" @click.native="payment" :disabled="price=='暂无价格'||price==''">
+        去付款
       </x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
@@ -74,11 +75,7 @@
       getPrice: function () {
         let url = '/api/' + this.$store.state.token + '/selectPrice/' + this.footerData.carBrand + '/' + this.footerData.carModel + '/' + this.footerData.carYears + '/' + this.footerData.carFilmModel + '/' + this.footerData.carFilmProperty
         this.$http.get(url).then(response => {
-          if (response.body === {}) {
-            this.price = '暂无价格'
-          } else {
-            this.price = response.body.actual_price
-          }
+          this.price = response.body.price
         }, response => {
           console.log(response)
           this.$vux.alert.show({
@@ -130,7 +127,7 @@
         }
 
         this.$http.post(url, postData).then(response => {
-          if (response.body === {}) {
+          if (response.body === []) {
             this.price = '暂无价格'
           } else {
             jsApiParameters = response.body
