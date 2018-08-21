@@ -150,7 +150,7 @@
 
 <style scoped>
   .main {
-    height: 60%;
+    height: 55%;
     padding: 0 5%;
   }
 
@@ -166,14 +166,14 @@
 
   .showPayment {
     background-color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: center;
     margin-top: 0.5rem;
   }
 
   .priceNumber {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     color: #101010;
     margin-top: 10%;
   }

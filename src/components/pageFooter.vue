@@ -10,7 +10,7 @@
     <p v-if="footerData&&footerData.selectStep>0">
       <span v-if="footerData.province">{{footerData.province}}</span>
       <span v-if="footerData.city">/{{footerData.city}}</span>
-      <span v-if="footerData.district">/{{footerData.district}}</span>
+      <!--<span v-if="footerData.district">/{{footerData.district}}</span>-->
       <span v-if="footerData.store">/{{footerData.store}}</span>
     </p>
     <!--<p>本次活动最终解释权归测试公司所有</p>-->

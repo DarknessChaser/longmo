@@ -6,7 +6,7 @@
         <span>选择门店</span>
       </div>
       <group>
-        <x-address title="地址：" v-model="address" :list="addressData"
+        <x-address title="地址：" v-model="address" :list="addressData" :hide-district="true"
                    placeholder="请选择地址" @on-shadow-change="onAddressChange" @on-hide="getStoreData"></x-address>
       </group>
       <group>
@@ -96,7 +96,7 @@
 
 <style scoped>
   .main {
-    height: 60%;
+    height: 55%;
     padding: 0 5%;
   }
 

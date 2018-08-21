@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/*': {
-        target: 'http://10.0.0.90:8999',
+        target: 'http://wxs.doorkey8.com',
         changeOrigin: true,
         secure: false
       }
