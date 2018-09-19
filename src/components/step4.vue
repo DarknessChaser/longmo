@@ -109,11 +109,12 @@
                 vm.$vux.alert.show({
                   title: '支付成功!'
                 })
+                vm.$router.push({path: 'paySuccess', query: {prepay_id: JSON.stringify(jsApiParameters.package.toString().split('=')[1])}})
               }
             })
         }
 
-        let callpay = function () {
+        let callPay = function () {
           if (typeof WeixinJSBridge === 'undefined') {
             if (document.addEventListener) {
               document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
@@ -131,7 +132,7 @@
             this.price = '暂无价格'
           } else {
             jsApiParameters = response.body
-            callpay()
+            callPay()
           }
         }, response => {
           console.log(response)

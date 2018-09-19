@@ -21,6 +21,9 @@
     components: {
       Group
     },
+    data: {
+      prepay_id: JSON.parse(this.$route.query.prepay_id)
+    },
     mounted () {
       const clipboard = new Clipboard('.btn')
       clipboard.on('success', function (e) {
