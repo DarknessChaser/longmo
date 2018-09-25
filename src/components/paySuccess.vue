@@ -21,8 +21,10 @@
     components: {
       Group
     },
-    data: {
-      prepay_id: JSON.parse(this.$route.query.prepay_id)
+    data: function () {
+      return {
+        prepay_id: JSON.parse(this.$route.query.prepay_id)
+      }
     },
     mounted () {
       const clipboard = new Clipboard('.btn')
@@ -49,7 +51,7 @@
 
 <style scoped>
   .main {
-    height: 55%;
+    height: 60%;
     text-align: center;
   }
 

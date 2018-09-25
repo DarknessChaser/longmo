@@ -8,7 +8,7 @@ import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 
 // 调用模板
-import {dateFormat, md5, XButton, Group, AlertPlugin} from 'vux'
+import {dateFormat, md5, XButton, Group, AlertPlugin, WechatPlugin} from 'vux'
 import MyLogo from './components/logo'
 import MyFooter from './components/pageFooter'
 
@@ -38,6 +38,7 @@ Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.use(AlertPlugin)
+Vue.use(WechatPlugin)
 
 Vue.component('x-button', XButton)
 Vue.component('group', Group)

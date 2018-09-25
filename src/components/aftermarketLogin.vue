@@ -38,7 +38,7 @@
 
 <style scoped>
   .main {
-    height: 55%;
+    height: 60%;
     text-align: center;
   }
 
