@@ -84,7 +84,7 @@
         })
       },
       payment: function () {
-        let url = '/api/' + this.$store.state.token + '/xiaDan/'
+        let url = '/api/' + this.$store.state.token + '/xiaDan'
         let vm = this
         let postData = {}
         postData.store_name = this.footerData.store
@@ -110,6 +110,10 @@
                   title: '支付成功!'
                 })
                 vm.$router.push({path: 'paySuccess', query: {prepay_id: JSON.stringify(jsApiParameters.package.toString().split('=')[1])}})
+              } else {
+                vm.$vux.alert.show({
+                  title: '支付未成功!'
+                })
               }
             })
         }
@@ -126,6 +130,7 @@
             onBridgeReady()
           }
         }
+        /* eslint-enable */
 
         this.$http.post(url, postData).then(response => {
           if (response.body === []) {
@@ -140,7 +145,6 @@
             title: '网络拥堵请稍候……'
           })
         })
-        /* eslint-enable */
       }
     },
     mounted: function () {

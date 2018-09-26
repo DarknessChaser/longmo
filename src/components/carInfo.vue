@@ -13,11 +13,11 @@
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click.native="chooseImage()"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
-          <div class="inputImg"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click.native="chooseImage()"><img src="../img/inputImgMini.png"/>
             <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
@@ -39,6 +39,37 @@
       XInput,
       Flexbox,
       FlexboxItem
+    },
+    data: function () {
+      return {
+        imgUrl: ''
+      }
+    },
+    methods: {
+      chooseImage: function () {
+        console.log(123)
+        const vm = this
+        this.$wechat.chooseImage({
+          count: 1, // 选择图片张数
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 图片来源
+          success: function (res) {
+            // 渲染图片
+            vm.imgUrl = res.localIds[0]
+            if (window.__wxjs_is_wkwebview) { // 兼容苹果
+              this.$wechat.getLocalImgData({
+                localId: vm.imgUrl, // 图片的localID
+                success: function (res) {
+                  vm.chooseImg = res.localData
+                  // localData是图片的base64数据，可以用img标签显示，ios系统必须使用base64显示
+                }
+              })
+            } else {
+              vm.chooseImg = vm.imgUrl
+            }
+          }
+        })
+      }
     }
   }
 </script>

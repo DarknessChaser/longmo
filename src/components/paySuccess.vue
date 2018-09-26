@@ -3,11 +3,10 @@
     <my-logo></my-logo>
     <div class="main">
       <img src="../img/paymentsuccess.png"/>
-      <p class="orderAlert">您的保换计划ID号为 xxxxxxxx</p>
+      <p class="orderAlert">您的保换计划ID号为 {{planId}}</p>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="点击保存" action-type="button" data-clipboard-text="xxxxxxxx" class="btn">点击保存
-      </x-button>
+      <x-button class="btn" type="primary" text="点击保存" action-type="button" :data-clipboard-text="planId"></x-button>
     </div>
   </div>
 </template>
@@ -23,14 +22,37 @@
     },
     data: function () {
       return {
-        prepay_id: JSON.parse(this.$route.query.prepay_id)
+        prepayId: JSON.parse(this.$route.query.prepay_id),
+        planId: ''
+      }
+    },
+    methods: {
+      getPlanId: function () {
+        let url = '/api/' + this.$store.state.token + '/selectplanid'
+        let postData = {}
+        postData.prepay_id = this.prepayId
+        this.$http.post(url, postData).then(response => {
+          if (response.body.code === 1) {
+            this.planId = response.body.plan_id
+          } else if (response.body.code === 0) {
+            this.$vux.alert.show({
+              title: response.body.msg
+            })
+          }
+        }, response => {
+          console.log(response)
+          this.$vux.alert.show({
+            title: '网络拥堵请稍候……'
+          })
+        })
       }
     },
     mounted () {
+      let vm = this
       const clipboard = new Clipboard('.btn')
       clipboard.on('success', function (e) {
         e.clearSelection()
-        this.$vux.alert.show({
+        vm.$vux.alert.show({
           title: '复制成功！',
           buttonText: '确认',
           onHide () {
@@ -40,11 +62,13 @@
       })
 
       clipboard.on('error', function () {
-        this.$vux.alert.show({
+        vm.$vux.alert.show({
           title: '您的浏览器不支持一键复制，请手动选择后复制！',
           buttonText: '确认'
         })
       })
+
+      this.getPlanId()
     }
   }
 </script>
