@@ -13,17 +13,20 @@
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" @click="chooseImage('compulsoryInsuranceImg')" :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('compulsoryInsuranceImg')"
+               :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
-          <div class="inputImg" @click="chooseImage('commercialInsuranceImg')" :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('commercialInsuranceImg')"
+               :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button" @click.native="uploadImage" :disabled="footerData.carBrand == '' || footerData.carModel == ''||footerData.carYears == ''">下一步</x-button>
+      <x-button type="primary" text="下一步" action-type="button" @click.native="uploadImage"
+                :disabled="plateNumber == '' || frameNumber == '' || compulsoryInsuranceImgId == '' || commercialInsuranceImgId == ''"></x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
   </div>
@@ -74,6 +77,18 @@
             } else {
               vm[objName + 'Url'] = vm[objName + 'LocalId']
             }
+            this.uploadImage(objName)
+          }
+        })
+      },
+      uploadImage: function (objName) {
+        const vm = this
+        this.$wechat.uploadImage({
+          localId: vm[objName + 'LocalId'],
+          isShowProgressTips: 100,
+          success: function (res) {
+            vm[objName + 'Id'] = res.serverId // 返回图片的服务器端ID
+            console.log('图片微信服务器id为：' + vm[objName + 'Id'])
           }
         })
       },
@@ -84,35 +99,6 @@
         this.infoData.commercialInsuranceImgId = this.commercialInsuranceImgId
         this.$router.push({path: 'step3', query: {infoData: JSON.stringify(this.infoData)}})
       }
-      /*
-      uploadImage: function () {
-        const vm = this
-        this.$wechat.uploadImage({
-          localId: vm.compulsoryInsuranceImgLocalId,
-          isShowProgressTips: 100,
-          success: function (res) {
-            vm.compulsoryInsuranceImgId = res.serverId // 返回图片的服务器端ID
-            console.log(vm.compulsoryInsuranceImgId)
-            // 发送给后台
-            /!* vm.$http.post('url', {
-              images: serverId
-            }).then(
-              function (response) {
-                // 回到提交成功页面
-                vm.$router.push('/finish')
-              }
-            ).catch(function () {
-              vm.$vux.toast.show({
-                text: '上传失败，请稍后再试！',
-                time: '2000',
-                type: 'text',
-                width: '2rem',
-                position: 'middle'
-              })
-            }) *!/
-          }
-        })
-      } */
     }
   }
 </script>
