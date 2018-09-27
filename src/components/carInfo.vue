@@ -6,24 +6,24 @@
         <span>车辆信息</span>
       </div>
       <group>
-        <x-input type="text" :required="true" title="车牌号：" placeholder-align="center"></x-input>
+        <x-input type="text" :required="true" title="车牌号：" placeholder-align="center" v-model="plateNumber"></x-input>
       </group>
       <group>
-        <x-input type="text" :required="true" title="车架号：" placeholder-align="center"></x-input>
+        <x-input type="text" :required="true" title="车架号：" placeholder-align="center" v-model="frameNumber"></x-input>
       </group>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" @click.native="chooseImage()"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('compulsoryInsuranceImg')" :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
-          <div class="inputImg" @click.native="chooseImage()"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('commercialInsuranceImg')" :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button">下一步</x-button>
+      <x-button type="primary" text="下一步" action-type="button" @click.native="uploadImage" :disabled="footerData.carBrand == '' || footerData.carModel == ''||footerData.carYears == ''">下一步</x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
   </div>
@@ -42,12 +42,19 @@
     },
     data: function () {
       return {
-        imgUrl: ''
+        plateNumber: '',
+        frameNumber: '',
+        compulsoryInsuranceImgLocalId: '',
+        compulsoryInsuranceImgUrl: '',
+        compulsoryInsuranceImgId: '',
+        commercialInsuranceImgLocalId: '',
+        commercialInsuranceImgUrl: '',
+        commercialInsuranceImgId: '',
+        infoData: {}
       }
     },
     methods: {
-      chooseImage: function () {
-        console.log(123)
+      chooseImage: function (objName) {
         const vm = this
         this.$wechat.chooseImage({
           count: 1, // 选择图片张数
@@ -55,21 +62,57 @@
           sourceType: ['album', 'camera'], // 图片来源
           success: function (res) {
             // 渲染图片
-            vm.imgUrl = res.localIds[0]
-            if (window.__wxjs_is_wkwebview) { // 兼容苹果
+            vm[objName + 'LocalId'] = res.localIds[0]
+            if (window.__js_is_wkwebview) { // 兼容苹果
               this.$wechat.getLocalImgData({
-                localId: vm.imgUrl, // 图片的localID
+                localId: vm[objName + 'LocalId'], // 图片的localID
                 success: function (res) {
-                  vm.chooseImg = res.localData
+                  vm[objName + 'Url'] = res.localData
                   // localData是图片的base64数据，可以用img标签显示，ios系统必须使用base64显示
                 }
               })
             } else {
-              vm.chooseImg = vm.imgUrl
+              vm[objName + 'Url'] = vm[objName + 'LocalId']
             }
           }
         })
+      },
+      nextStep: function () {
+        this.infoData.plateNumber = this.plateNumber
+        this.infoData.frameNumber = this.frameNumber
+        this.infoData.compulsoryInsuranceImgId = this.compulsoryInsuranceImgId
+        this.infoData.commercialInsuranceImgId = this.commercialInsuranceImgId
+        this.$router.push({path: 'step3', query: {infoData: JSON.stringify(this.infoData)}})
       }
+      /*
+      uploadImage: function () {
+        const vm = this
+        this.$wechat.uploadImage({
+          localId: vm.compulsoryInsuranceImgLocalId,
+          isShowProgressTips: 100,
+          success: function (res) {
+            vm.compulsoryInsuranceImgId = res.serverId // 返回图片的服务器端ID
+            console.log(vm.compulsoryInsuranceImgId)
+            // 发送给后台
+            /!* vm.$http.post('url', {
+              images: serverId
+            }).then(
+              function (response) {
+                // 回到提交成功页面
+                vm.$router.push('/finish')
+              }
+            ).catch(function () {
+              vm.$vux.toast.show({
+                text: '上传失败，请稍后再试！',
+                time: '2000',
+                type: 'text',
+                width: '2rem',
+                position: 'middle'
+              })
+            }) *!/
+          }
+        })
+      } */
     }
   }
 </script>
@@ -99,5 +142,7 @@
   .inputImg p {
     font-size: 1rem;
     color: #aaaaaa;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 </style>
