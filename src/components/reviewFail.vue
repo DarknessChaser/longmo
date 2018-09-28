@@ -5,7 +5,7 @@
       <img src="../img/reviewfail.png"/>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="重新提交审核" action-type="button">重新提交审核</x-button>
+      <x-button type="primary" text="重新提交审核" action-type="button" @click.native="reviewAgain">重新提交审核</x-button>
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@
     name: 'reviewFail',
     components: {
       Group
+    },
+    methods: {
+      reviewAgain: function () {
+        this.$router.push('login')
+      }
     }
   }
 </script>

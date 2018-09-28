@@ -43,6 +43,8 @@
     },
     methods: {
       nextStep: function () {
+        this.infoData.planId = this.planId
+
         let url = '/api/' + this.$store.state.token + '/checkplanid'
         let postData = {}
 
@@ -51,7 +53,6 @@
 
         this.$http.post(url, postData).then(response => {
           if (response.body.result === true) {
-            this.infoData.planId = this.planId
             this.$router.push({path: 'carInfo', query: {infoData: JSON.stringify(this.infoData)}})
           } else {
             this.$vux.alert.show({
