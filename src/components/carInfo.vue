@@ -25,7 +25,7 @@
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="下一步" action-type="button" @click.native="uploadImage"
+      <x-button type="primary" text="下一步" action-type="button" @click.native="nextStep"
                 :disabled="plateNumber == '' || frameNumber == '' || compulsoryInsuranceImgId == '' || commercialInsuranceImgId == ''"></x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
@@ -53,7 +53,7 @@
         commercialInsuranceImgLocalId: '',
         commercialInsuranceImgUrl: '',
         commercialInsuranceImgId: '',
-        infoData: {}
+        infoData: JSON.parse(this.$route.query.infoData)
       }
     },
     methods: {
@@ -77,7 +77,7 @@
             } else {
               vm[objName + 'Url'] = vm[objName + 'LocalId']
             }
-            this.uploadImage(objName)
+            vm.uploadImage(objName)
           }
         })
       },
@@ -97,7 +97,7 @@
         this.infoData.frameNumber = this.frameNumber
         this.infoData.compulsoryInsuranceImgId = this.compulsoryInsuranceImgId
         this.infoData.commercialInsuranceImgId = this.commercialInsuranceImgId
-        this.$router.push({path: 'step3', query: {infoData: JSON.stringify(this.infoData)}})
+        this.$router.push({path: 'ownerInfo', query: {infoData: JSON.stringify(this.infoData)}})
       }
     }
   }
