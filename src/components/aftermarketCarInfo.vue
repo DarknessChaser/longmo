@@ -63,6 +63,9 @@
       Flexbox,
       FlexboxItem
     },
+    data: function () {
+      return {aftermarketPhone: JSON.parse(this.$route.query.aftermarketPhone)}
+    },
     methods: {
       alertInfo: function () {
         this.$vux.alert.show({
@@ -75,7 +78,7 @@
       }
     },
     mounted: function () {
-      this.alertInfo()
+      // this.alertInfo()
     }
   }
 </script>

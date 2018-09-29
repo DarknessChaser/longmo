@@ -8,12 +8,14 @@
       </group>
       <group class="inputPhone">
         <x-input title="验证码：" class="weui-vcode" v-model="verificationCode">
-          <x-button slot="right" type="primary" mini @click.native="sendMessage" text="发送验证码" :disabled="!messageFlag"></x-button>
+          <x-button slot="right" type="primary" mini @click.native="sendMessage" text="发送验证码"
+                    :disabled="!messageFlag"></x-button>
         </x-input>
       </group>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="登陆" action-type="button" :disabled="messageFlag" @click.native="checkMessage">登陆</x-button>
+      <x-button type="primary" text="登陆" action-type="button" :disabled="messageFlag" @click.native="checkMessage">登陆
+      </x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
   </div>
@@ -71,7 +73,7 @@
 
         this.$http.post(url, postData).then(response => {
           if (response.body.result === true || response.body.msg === '验证成功！') {
-            this.$router.push('aftermarketCarInfo')
+            this.$router.push({path: 'aftermarketCarInfo.vue', query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}})
           } else {
             this.$vux.alert.show({
               title: response.body.msg
