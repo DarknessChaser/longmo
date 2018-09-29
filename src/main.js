@@ -52,7 +52,7 @@ const store = new Vuex.Store({
 })
 
 Vue.http.post('/api/' + store.state.token + '/jssdk', `{"url":"${window.location.href}"}`).then(response => {
-  console.log(response)
+  response.body.debug = true
   Vue.wechat.config(response.body)
 }, response => {
   console.log(response)
