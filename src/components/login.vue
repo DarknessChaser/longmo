@@ -66,9 +66,6 @@
           })
         })
       }
-    },
-    mounted: function () {
-      alert(window.wxjs_is_wkwebview)
     }
   }
 </script>
