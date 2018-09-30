@@ -7,26 +7,26 @@
       </div>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" @click="chooseImage('accidentLiabilityCertificate')"
-               :style="{backgroundImage:'url('+accidentLiabilityCertificateImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('accidentLiabilityCertificateImg')"
+               :style="{backgroundImage:'url('+accidentLiabilityCertificateImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
             <p>事故责任认定书</p></div>
         </flexbox-item>
         <flexbox-item>
-          <div class="inputImg" @click="chooseImage('site')"
-               :style="{backgroundImage:'url('+siteImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('siteImg')"
+               :style="{backgroundImage:'url('+siteImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
             <p>受损现场照片</p></div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
-          <div class="inputImg" @click="chooseImage('other')"
-               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/>
+          <div class="inputImg" @click="chooseImage('otherImg')"
+               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
             <p>其他相关图片</p></div>
         </flexbox-item>
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="提交资料" action-type="button" @click.native="submitInfo" :disabled="!checkFlag">提交资料</x-button>
+      <x-button type="primary" text="提交资料" action-type="button" @click.native="submitInfo" :disabled="!checkFlag || accidentLiabilityCertificateImgId == '' || siteImgId == '' || otherImgId == ''">提交资料</x-button>
       <check-icon :value.sync="checkFlag" type="plain" class="userAgreement">我已阅读并同意<span>《赔付须知》</span></check-icon>
     </div>
     <my-footer :footerData="{}"></my-footer>
@@ -136,10 +136,19 @@
 
         this.$http.post(url, postData).then(response => {
           console.log(response)
-          this.$vux.alert.show({
-            title: '资料已提交，请等待审核！'
-          })
-          this.$router.push({path: 'paySuccess', query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}})
+          if (response.body.result !== false) {
+            this.$vux.alert.show({
+              title: '资料已提交，请等待审核！'
+            })
+            this.$router.push({
+              path: 'aftermarketCarInfo',
+              query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}
+            })
+          } else {
+            this.$vux.alert.show({
+              title: response.body.msg
+            })
+          }
         }, response => {
           console.log(response)
           this.$vux.alert.show({

@@ -8,17 +8,17 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('carAtStoreImg')"
-               :style="{backgroundImage:'url('+carAtStoreImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
+               :style="{backgroundImage:'url('+carAtStoreImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('deliverImg')"
-               :style="{backgroundImage:'url('+deliverImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
+               :style="{backgroundImage:'url('+deliverImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('otherImg')"
-               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
+               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
         </flexbox-item>
       </flexbox>
     </div>
@@ -118,11 +118,16 @@
         postData = JSON.stringify(postData)
 
         this.$http.post(url, postData).then(response => {
-          console.log(response)
-          this.$vux.alert.show({
-            title: '审核已提交，请等待审核！'
-          })
-          // this.$router.push({path: 'paySuccess', query: {prepay_id: JSON.stringify(jsApiParameters.package.toString().split('=')[1])}})
+          if (response.body.result !== false) {
+            this.$vux.alert.show({
+              title: '资料已提交，请等待审核！'
+            })
+            // this.$router.push({path: 'paySuccess', query: {prepay_id: JSON.stringify(jsApiParameters.package.toString().split('=')[1])}})
+          } else {
+            this.$vux.alert.show({
+              title: response.body.msg
+            })
+          }
         }, response => {
           console.log(response)
           this.$vux.alert.show({

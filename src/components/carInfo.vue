@@ -14,12 +14,12 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('compulsoryInsuranceImg')"
-               :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('commercialInsuranceImg')"
-               :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
             <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
