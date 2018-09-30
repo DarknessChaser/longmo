@@ -138,11 +138,13 @@
           console.log(response)
           if (response.body.result !== false) {
             this.$vux.alert.show({
-              title: '资料已提交，请等待审核！'
-            })
-            this.$router.push({
-              path: 'aftermarketCarInfo',
-              query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}
+              title: '资料已提交，请等待审核！',
+              onHide () {
+                this.$router.push({
+                  path: 'aftermarketCarInfo',
+                  query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}
+                })
+              }
             })
           } else {
             this.$vux.alert.show({
