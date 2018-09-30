@@ -45,8 +45,8 @@
           success: function (res) {
             // 渲染图片
             vm[objName + 'LocalId'] = res.localIds[0]
-            if (window.wxjs_is_wkwebview) { // 兼容苹果
-              this.$wechat.getLocalImgData({
+            if (window.__wxjs_is_wkwebview) { // 兼容苹果
+              vm.$wechat.getLocalImgData({
                 localId: vm[objName + 'LocalId'], // 图片的localID
                 success: function (res) {
                   vm[objName + 'Url'] = res.localData
