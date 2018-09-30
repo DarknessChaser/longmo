@@ -8,22 +8,22 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('carAtStoreImg')"
-               :style="{backgroundImage:'url('+carAtStoreImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
+               :style="{backgroundImage:'url('+carAtStoreImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('deliverImg')"
-               :style="{backgroundImage:'url('+deliverImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
+               :style="{backgroundImage:'url('+deliverImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('otherImg')"
-               :style="{backgroundImage:'url('+otherImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
+               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
         </flexbox-item>
       </flexbox>
     </div>
     <div class="touchBtn">
-      <x-button type="primary" text="提交审核" action-type="button" @click.native="SubmitReview"
+      <x-button type="primary" text="提交审核" action-type="button" @click.native="submitReview"
                 :disabled="carAtStoreImgId == '' || deliverImgId == '' || otherImgId == ''">提交审核</x-button>
     </div>
     <my-footer :footerData="{}"></my-footer>
@@ -91,7 +91,7 @@
           }
         })
       },
-      SubmitReview: function () {
+      submitReview: function () {
         this.infoData.carAtStoreImgId = this.carAtStoreImgId
         this.infoData.deliverImgId = this.deliverImgId
         this.infoData.otherImgId = this.otherImgId

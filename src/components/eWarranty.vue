@@ -7,7 +7,7 @@
       </div>
       <group>
         <div class="inputImg" @click="chooseImage('eWarrantyImg')"
-             :style="{backgroundImage:'url('+eWarrantyImgUrl+')'}"><img src="../img/inputImg.png"/></div>
+             :style="{backgroundImage:'url('+eWarrantyImgUrl+')', backgroundSize:'100%'}"><img src="../img/inputImg.png"/></div>
       </group>
     </div>
     <div class="touchBtn">

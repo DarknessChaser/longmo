@@ -73,7 +73,10 @@
 
         this.$http.post(url, postData).then(response => {
           if (response.body.result === true || response.body.msg === '验证成功！') {
-            this.$router.push({path: 'aftermarketCarInfo.vue', query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}})
+            this.$router.push({
+              path: 'aftermarketCarInfo',
+              query: {aftermarketPhone: JSON.stringify(this.aftermarketPhone)}
+            })
           } else {
             this.$vux.alert.show({
               title: response.body.msg
