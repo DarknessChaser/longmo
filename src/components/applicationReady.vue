@@ -8,19 +8,19 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('accidentLiabilityCertificateImg')"
-               :style="{backgroundImage:'url('+accidentLiabilityCertificateImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+accidentLiabilityCertificateImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>事故责任认定书</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('siteImg')"
-               :style="{backgroundImage:'url('+siteImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+siteImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>受损现场照片</p></div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('otherImg')"
-               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+otherImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>其他相关图片</p></div>
         </flexbox-item>
       </flexbox>
@@ -192,6 +192,9 @@
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
 
   .inputImg p {

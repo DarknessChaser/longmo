@@ -7,7 +7,7 @@
       </div>
       <group>
         <div class="inputImg" @click="chooseImage('eWarrantyImg')"
-             :style="{backgroundImage:'url('+eWarrantyImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImg.png"/></div>
+             :style="{backgroundImage:'url('+eWarrantyImgUrl+')'}"><img src="../img/inputImg.png"/></div>
       </group>
     </div>
     <div class="touchBtn">
@@ -98,5 +98,8 @@
     padding: 15% 0;
     text-align: center;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
 </style>

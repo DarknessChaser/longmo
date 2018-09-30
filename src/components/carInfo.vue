@@ -14,12 +14,12 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('compulsoryInsuranceImg')"
-               :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+compulsoryInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>交强险保单</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('commercialInsuranceImg')"
-               :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/>
+               :style="{backgroundImage:'url('+commercialInsuranceImgUrl+')'}"><img src="../img/inputImgMini.png"/>
             <p>商业险保单</p></div>
         </flexbox-item>
       </flexbox>
@@ -123,12 +123,13 @@
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
 
   .inputImg p {
     font-size: 1rem;
     color: #aaaaaa;
-    background-repeat: no-repeat;
-    background-size: contain;
   }
 </style>

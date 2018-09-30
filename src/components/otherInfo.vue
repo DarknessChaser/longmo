@@ -8,17 +8,17 @@
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('carAtStoreImg')"
-               :style="{backgroundImage:'url('+carAtStoreImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
+               :style="{backgroundImage:'url('+carAtStoreImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>车辆在门店正面照</p></div>
         </flexbox-item>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('deliverImg')"
-               :style="{backgroundImage:'url('+deliverImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
+               :style="{backgroundImage:'url('+deliverImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>施工交付单</p></div>
         </flexbox-item>
       </flexbox>
       <flexbox>
         <flexbox-item>
           <div class="inputImg" @click="chooseImage('otherImg')"
-               :style="{backgroundImage:'url('+otherImgUrl+')', backgroundSize:'cover'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
+               :style="{backgroundImage:'url('+otherImgUrl+')'}"><img src="../img/inputImgMini.png"/><p>其他相关图片</p></div>
         </flexbox-item>
       </flexbox>
     </div>
@@ -159,6 +159,9 @@
     padding-top: 5%;
     text-align: center;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
 
   .inputImg p {
